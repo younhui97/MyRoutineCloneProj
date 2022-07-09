@@ -8,12 +8,12 @@ class Rlist extends StatelessWidget{
     return Column(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height*0.54,
+          height: MediaQuery.of(context).size.height*0.6,
           width: MediaQuery.of(context).size.width*0.98,
           child: ListView.builder(
             padding: EdgeInsets.zero,
             shrinkWrap: true,
-            itemCount: 10,
+            itemCount: 15,
             itemBuilder: (BuildContext context, int index) {
               return Row(
                 children: <Widget>[
