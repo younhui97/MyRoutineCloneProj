@@ -88,10 +88,10 @@ class _MainPageState extends State<MainPage>{
                   ),
 
                   Container(
-                    height: MediaQuery.of(context).size.height*0.68,
+                    height: MediaQuery.of(context).size.height*0.72,
                     color: const Color(0xFFEDEDED),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         // Container(
                         //   decoration: BoxDecoration(

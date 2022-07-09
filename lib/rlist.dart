@@ -8,9 +8,10 @@ class Rlist extends StatelessWidget{
     return Column(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height*0.58,
+          height: MediaQuery.of(context).size.height*0.54,
           width: MediaQuery.of(context).size.width*0.98,
           child: ListView.builder(
+            padding: EdgeInsets.zero,
             shrinkWrap: true,
             itemCount: 10,
             itemBuilder: (BuildContext context, int index) {
@@ -21,7 +22,7 @@ class Rlist extends StatelessWidget{
                     child:
                     SizedBox(
                       width: 30,
-                      height: 50,
+                      height: MediaQuery.of(context).size.height*0.06,
                     ),
                   ),
                   Expanded(
@@ -29,7 +30,7 @@ class Rlist extends StatelessWidget{
                     child:
                       SizedBox(
                       width: 30,
-                      height: 50,
+                      height: MediaQuery.of(context).size.height*0.06,
                       child: Center(
                         child: Text("1",style: TextStyle(),),
                       ),
@@ -39,8 +40,7 @@ class Rlist extends StatelessWidget{
                     flex:6,
                     child:
                       Container(
-                        width: 100,
-                        height: 50,
+                        width: 100, height: MediaQuery.of(context).size.height*0.06,
                         decoration: BoxDecoration(
                           border: Border.all(color: Color(0xFFDBDBDB), width: 1),
                           color: Colors.white,
@@ -63,7 +63,7 @@ class Rlist extends StatelessWidget{
                     child:
                     Container(
                       // width: MediaQuery.of(context).size.width-210,
-                        height: 50,
+                        height: MediaQuery.of(context).size.height*0.06,
                         decoration: BoxDecoration(
                           border: Border.all(color: Color(0xFF50e397), width: 2),
                           color: Colors.white,
@@ -85,8 +85,7 @@ class Rlist extends StatelessWidget{
                     flex: 4,
                     child:
                       Container(
-                    width: 50,
-                    height: 50,
+                    width: 50, height: MediaQuery.of(context).size.height*0.06,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xFFDBDBDB), width: 1),
                       color: Colors.white,
@@ -101,7 +100,7 @@ class Rlist extends StatelessWidget{
                     child:
                     SizedBox(
                       width: 30,
-                      height: 50,
+                      height: MediaQuery.of(context).size.height*0.06,
                       ),
                     ), //넷째칸
                 ],
