@@ -11,6 +11,7 @@ class Tabbar extends StatelessWidget {
         length: 3,
         child: Scaffold(
           appBar: AppBar(
+            toolbarHeight: 0,
             bottom: const TabBar(
               tabs: [
                 Tab(icon: Icon(Icons.directions_car)),
