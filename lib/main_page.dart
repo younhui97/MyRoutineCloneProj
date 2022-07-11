@@ -1,6 +1,10 @@
+import 'package:contact/myinfo.dart';
+import 'package:contact/social.dart';
 import "package:flutter/material.dart";
 import "package:contact/tabbar.dart";
 import 'package:contact/setting.dart';
+import 'package:contact/routine_recommend';
+import 'accomplish.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -11,6 +15,13 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage>{
+  final ButtonStyle bottomstyle =
+  ElevatedButton.styleFrom(
+      elevation: 0,
+      primary: Colors.white,
+      onPrimary: Colors.black54,
+      // padding: EdgeInsets.all(20),
+      textStyle: const TextStyle(fontSize: 15));
   // int _selectedTabIndex = 0;
   @override
   Widget build(BuildContext context){
@@ -58,12 +69,23 @@ class _MainPageState extends State<MainPage>{
                       height: MediaQuery.of(context).size.height*0.1,
                       child: Row(
                         children: [
+                          Container(
+                            width: 2,
+                          ),
                           for (int i= 0; i<7; i++)
                             Expanded(child:
                             TextButton(onPressed: (){},
+                                style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all((now.subtract(Duration(days: now.weekday - i-1)).day == now.day) ? Color(0xFF63686B) : Colors.white),
+                                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(18.0),
+                                        )
+                                    )
+                                ),
                                 child: Column(
                                   children: [
-                                    Text(wd[i],style: TextStyle(color: (now.subtract(Duration(days: now.weekday - i-1)).day == now.day) ? Colors.black87 : Colors.black12),),
+                                    Text(wd[i],style: TextStyle(color: (now.subtract(Duration(days: now.weekday - i-1)).day == now.day) ? Colors.white : Colors.black12),),
                                     SizedBox.fromSize(
                                       size: Size(40, 40), // button width and height
                                       child: ClipOval(
@@ -78,7 +100,10 @@ class _MainPageState extends State<MainPage>{
                                         ),
                                       ),
                                     ),],)
-                            ),)
+                            ),),
+                          Container(
+                            width: 2,
+                          ),
                         ],
                       ),
                     ), //요일 쭉
@@ -125,55 +150,90 @@ class _MainPageState extends State<MainPage>{
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height*0.012536,
+                        height: MediaQuery.of(context).size.height*0.011282,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Column(
-                            children: [
-                              Icon(
-                                Icons.home,
-                                color: Color(0xFF3FCD76),),
-                              Text("홈",style: TextStyle(color: Color(0xFF3FCD76)),)
-                            ],
+                          Container(
+                            height: MediaQuery.of(context).size.height*0.05138,
+                            child: ElevatedButton(
+                                onPressed: ()=>{Navigator.of(context).push(_mainRoute())},
+                                style: bottomstyle,
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      Icons.home,
+                                      color: Color(0xFF3FCD76),),
+                                    Expanded(flex: 1,child: Text("홈",style: TextStyle(color: Color(0xFF3FCD76),fontSize: 11),))
+                                  ],
+                                ),
+                            ),
                           ),
-                          Column(
-                            children: [
-                              Icon(
-                                Icons.thumb_up_outlined,
-                                color: Colors.black87,),
-                              Text("루틴추천")
-                            ],
+                          Container(
+                            height: MediaQuery.of(context).size.height*0.05138,
+                            child: ElevatedButton(
+                              onPressed: ()=>{Navigator.of(context).push(_recRoute())},
+                              style: bottomstyle,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.thumb_up_outlined,
+                                    color: Colors.black87,),
+                                  Expanded(flex: 1,child: Text("루틴추천",style: TextStyle(color: Colors.black87,fontSize: 11),))
+                                ],
+                              ),
+                            ),
                           ),
-                          Column(
-                            children: [
-                              Icon(
-                                Icons.emoji_events_outlined,
-                                color: Colors.black87,),
-                              Text("성취")
-                            ],
+                          Container(
+                            height: MediaQuery.of(context).size.height*0.05138,
+                            child: ElevatedButton(
+                              onPressed: ()=>{Navigator.of(context).push(_accRoute())},
+                              style: bottomstyle,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.emoji_events_outlined,
+                                    color: Colors.black87,),
+                                  Expanded(flex: 1,child: Text("성취",style: TextStyle(color: Colors.black87,fontSize: 11),))
+                                ],
+                              ),
+                            ),
                           ),
-                          Column(
-                            children: [
-                              Icon(
-                                Icons.people_outlined,
-                                color: Colors.black87,),
-                              Text("소셜")
-                            ],
+                          Container(
+                            height: MediaQuery.of(context).size.height*0.05138,
+                            child: ElevatedButton(
+                              onPressed: ()=>{Navigator.of(context).push(_socialRoute())},
+                              style: bottomstyle,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.people_outlined,
+                                    color: Colors.black87,),
+                                  Expanded(flex: 1,child: Text("소셜",style: TextStyle(color: Colors.black87,fontSize: 11),))
+                                ],
+                              ),
+                            ),
                           ),
-                          Column(
-                            children: [
-                              Icon(
-                                Icons.person_outlined,
-                                color: Colors.black87,),
-                              Text("내정보")
-                            ],
+                          Container(
+                            height: MediaQuery.of(context).size.height*0.05138,
+                            child: ElevatedButton(
+                              onPressed: ()=>{Navigator.of(context).push(_myinfoRoute())},
+                              style: bottomstyle,
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.person_outlined,
+                                    color: Colors.black87,),
+                                  Expanded(flex: 1,child: Text("내정보",style: TextStyle(color: Colors.black87,fontSize: 11),))
+                                ],
+                              ),
+                            ),
                           ),
                         ],
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height*0.012536,
+                        height: MediaQuery.of(context).size.height*0.011282,
                       ),
                     ],
                   ),
@@ -183,9 +243,84 @@ class _MainPageState extends State<MainPage>{
     );
   }
 }
+Route _mainRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => MainPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(1.0, 0.0);
+      var end = Offset.zero;
+      var tween = Tween(begin: begin, end: end);
+      var offsetAnimation = animation.drive(tween);
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
 Route _settingRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => Setting(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(1.0, 0.0);
+      var end = Offset.zero;
+      var tween = Tween(begin: begin, end: end);
+      var offsetAnimation = animation.drive(tween);
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
+Route _recRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => Rec(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(1.0, 0.0);
+      var end = Offset.zero;
+      var tween = Tween(begin: begin, end: end);
+      var offsetAnimation = animation.drive(tween);
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
+Route _accRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => Acc(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(1.0, 0.0);
+      var end = Offset.zero;
+      var tween = Tween(begin: begin, end: end);
+      var offsetAnimation = animation.drive(tween);
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
+Route _socialRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => Social(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(1.0, 0.0);
+      var end = Offset.zero;
+      var tween = Tween(begin: begin, end: end);
+      var offsetAnimation = animation.drive(tween);
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
+Route _myinfoRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => Myinfo(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       var begin = Offset(1.0, 0.0);
       var end = Offset.zero;
