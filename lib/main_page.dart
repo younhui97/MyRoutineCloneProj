@@ -1,6 +1,6 @@
-import 'package:contact/rlist.dart';
 import "package:flutter/material.dart";
 import "package:contact/tabbar.dart";
+import 'package:contact/setting.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -42,7 +42,11 @@ class _MainPageState extends State<MainPage>{
                           Row(
                             children:[
                               IconButton(
-                                onPressed: ()=>{} ,
+                                onPressed: ()=>{
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (_) => Setting()),
+                                )},
                                 icon: Icon(Icons.more_horiz,color: Colors.black87,),
                               ),
                               Text("  ")

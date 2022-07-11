@@ -32,7 +32,7 @@ class Rlist extends StatelessWidget{
                       width: 30,
                       height: MediaQuery.of(context).size.height*0.06,
                       child: Center(
-                        child: Text("1",style: TextStyle(),),
+                        child: Text((index+1).toString(),style: TextStyle(),),
                       ),
                     ),
                   ), //숫자1
