@@ -32,7 +32,7 @@ class Setting extends StatelessWidget{
                   leading:
                   IconButton(icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
                       onPressed: ()=>{
-                      Navigator.of(context).push(_mainRoute())
+                      Navigator.of(context).pop(context)
                       }),
                 ),
               )
@@ -112,22 +112,6 @@ class Setting extends StatelessWidget{
       // escape 'No MediaQuery widget found' error
     );
   }
-}
-Route _mainRoute() {
-  return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) => MainPage(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      var begin = Offset(-1.0, 0.0);
-      var end = Offset.zero;
-      var tween = Tween(begin: begin, end: end);
-      var offsetAnimation = animation.drive(tween);
-
-      return SlideTransition(
-        position: offsetAnimation,
-        child: child,
-      );
-    },
-  );
 }
 
 
