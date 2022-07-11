@@ -25,19 +25,20 @@ class Setting extends StatelessWidget{
                 padding: EdgeInsets.only(top:30),
                 child: AppBar(
                   centerTitle: true,
-                  elevation: 1,
+                  elevation: 0,
                   backgroundColor: Color(0xFFFFFFFF),
                   title: Text('설정',style: TextStyle(color: Colors.black),),
                   toolbarHeight: 80,
                   leading:
                   IconButton(icon: Icon(Icons.arrow_back_ios,color: Colors.black,),
                       onPressed: ()=>{
-                        Navigator.push(context, MaterialPageRoute(builder: (_) => MainPage()))
+                      Navigator.of(context).push(_mainRoute())
                       }),
                 ),
               )
           ),
           body: Container(
+            color: const Color(0xFFEDEDED),
             child: Column(
               children: [
                 Container(
@@ -112,7 +113,21 @@ class Setting extends StatelessWidget{
     );
   }
 }
-//MediaQuery.of(context).size.height*0.063
-//height: MediaQuery.of(context).size.height*0.027
+Route _mainRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => MainPage(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(-1.0, 0.0);
+      var end = Offset.zero;
+      var tween = Tween(begin: begin, end: end);
+      var offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
 
 

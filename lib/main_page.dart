@@ -21,10 +21,10 @@ class _MainPageState extends State<MainPage>{
         home: Scaffold(
             body :
             Container(
-              height: MediaQuery.of(context).size.height,
-              child:
+                height: MediaQuery.of(context).size.height,
+                child:
                 Expanded(child:
-                  Column(
+                Column(
                   children: [
                     SizedBox( height: MediaQuery.of(context).size.height*0.027,),
                     SizedBox(
@@ -42,11 +42,9 @@ class _MainPageState extends State<MainPage>{
                           Row(
                             children:[
                               IconButton(
-                                onPressed: ()=>{
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (_) => Setting()),
-                                )},
+                                onPressed: (){
+                                  Navigator.of(context).push(_settingRoute());
+                                },
                                 icon: Icon(Icons.more_horiz,color: Colors.black87,),
                               ),
                               Text("  ")
@@ -182,7 +180,23 @@ class _MainPageState extends State<MainPage>{
         )
     );
   }
-
 }
+Route _settingRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => Setting(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(1.0, 0.0);
+      var end = Offset.zero;
+      var tween = Tween(begin: begin, end: end);
+      var offsetAnimation = animation.drive(tween);
+
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
+
 
 
