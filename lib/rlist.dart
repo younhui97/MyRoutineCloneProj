@@ -8,7 +8,7 @@ class Rlist extends StatelessWidget{
     return Column(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height*0.48,
+          height: MediaQuery.of(context).size.height*0.53,
           width: MediaQuery.of(context).size.width*0.98,
           child: ListView.builder(
             padding: EdgeInsets.zero,
