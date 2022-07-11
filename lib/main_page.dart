@@ -238,8 +238,13 @@ class _MainPageState extends State<MainPage>{
                     ],
                   ),
                 )
-            )
-        )
+            ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Color(0xFF16cd73),
+            child: Icon(Icons.add,color: Color(0xFF006331)),
+            onPressed: (){},
+          ),
+        ),
     );
   }
 }
