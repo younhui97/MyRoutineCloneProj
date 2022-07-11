@@ -115,66 +115,68 @@ class _MainPageState extends State<MainPage>{
             bottomNavigationBar: BottomAppBar (
                 elevation: 0,
                 color: Colors.white,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black12, width: 0.5),
+                child: Container(
+                  height: MediaQuery.of(context).size.height*0.077723,
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black12, width: 0.5),
+                        ),
                       ),
-                    ),
-                    Container(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.home,
-                              color: Color(0xFF3FCD76),),
-                            Text("홈",style: TextStyle(color: Color(0xFF3FCD76)),)
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.thumb_up_outlined,
-                              color: Colors.black87,),
-                            Text("루틴추천")
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.emoji_events_outlined,
-                              color: Colors.black87,),
-                            Text("성취")
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.people_outlined,
-                              color: Colors.black87,),
-                            Text("소셜")
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.person_outlined,
-                              color: Colors.black87,),
-                            Text("내정보")
-                          ],
-                        ),
-                      ],
-                    ),
-                    Container(
-                      height: 10,
-                    ),
-                  ],
+                      Container(
+                        height: MediaQuery.of(context).size.height*0.012536,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              Icon(
+                                Icons.home,
+                                color: Color(0xFF3FCD76),),
+                              Text("홈",style: TextStyle(color: Color(0xFF3FCD76)),)
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Icon(
+                                Icons.thumb_up_outlined,
+                                color: Colors.black87,),
+                              Text("루틴추천")
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Icon(
+                                Icons.emoji_events_outlined,
+                                color: Colors.black87,),
+                              Text("성취")
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Icon(
+                                Icons.people_outlined,
+                                color: Colors.black87,),
+                              Text("소셜")
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Icon(
+                                Icons.person_outlined,
+                                color: Colors.black87,),
+                              Text("내정보")
+                            ],
+                          ),
+                        ],
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height*0.012536,
+                      ),
+                    ],
+                  ),
                 )
             )
         )
@@ -189,7 +191,6 @@ Route _settingRoute() {
       var end = Offset.zero;
       var tween = Tween(begin: begin, end: end);
       var offsetAnimation = animation.drive(tween);
-
       return SlideTransition(
         position: offsetAnimation,
         child: child,
@@ -197,6 +198,5 @@ Route _settingRoute() {
     },
   );
 }
-
 
 
