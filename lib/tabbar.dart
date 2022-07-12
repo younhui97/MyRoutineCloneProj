@@ -19,10 +19,10 @@ class _TabbarCState extends State<TabbarC> {
   var refreshKey = GlobalKey<RefreshIndicatorState>();
   Future<Null> refreshList() async {
     refreshKey.currentState?.show(atTop: false);
-    await Future.delayed(Duration(seconds: 0)); //thread sleep 같은 역할을 함.
+    await Future.delayed(Duration(seconds: 1)); //thread sleep 같은 역할을 함.
     //새로운 정보를 그려내는 곳
     setState(() {
-      list = List.generate(random.nextInt(100), (i) => "Item $i");
+      // list = List.generate(random.nextInt(100), (i) => "Item $i");
     });
     return null;
   }

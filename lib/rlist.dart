@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-
-class Rlist extends StatelessWidget{
+class Rlist extends StatefulWidget {
   const Rlist({Key? key}) : super(key: key);
+  @override
+  State<StatefulWidget> createState() {
+    return RlistState();
+  }
+}
+
+class RlistState extends State<Rlist>{
+  static var listnum = 1 ;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -11,9 +18,10 @@ class Rlist extends StatelessWidget{
           height: MediaQuery.of(context).size.height*0.53,
           width: MediaQuery.of(context).size.width*0.98,
           child: ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             shrinkWrap: true,
-            itemCount: 4,
+            itemCount: listnum,
             itemBuilder: (BuildContext context, int index) {
               return Row(
                 children: <Widget>[
@@ -112,6 +120,7 @@ class Rlist extends StatelessWidget{
     );
   }
 }
+
 
 
 

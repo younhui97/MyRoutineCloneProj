@@ -5,6 +5,7 @@ import "package:contact/tabbar.dart";
 import 'package:contact/setting.dart';
 import 'package:contact/routine_recommend';
 import 'accomplish.dart';
+import 'package:contact/rlist.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -242,7 +243,9 @@ class _MainPageState extends State<MainPage>{
           floatingActionButton: FloatingActionButton(
             backgroundColor: Color(0xFF16cd73),
             child: Icon(Icons.add,color: Color(0xFF006331)),
-            onPressed: (){},
+            onPressed: (){
+              RlistState.listnum++;
+            },
           ),
         ),
     );
