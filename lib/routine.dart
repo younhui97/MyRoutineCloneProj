@@ -8,7 +8,9 @@ class RoutineC extends StatelessWidget{
   Widget build(BuildContext context){
     return MaterialApp(
       home: Scaffold(
-        body: Container(
+        body: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+          child:Container(
           height: MediaQuery.of(context).size.height*0.72,
           color: const Color(0xFFEDEDED),
           child: Column(
@@ -136,6 +138,7 @@ class RoutineC extends StatelessWidget{
               )
             ],
           ),
+        ),
         ),
       ),
     );
