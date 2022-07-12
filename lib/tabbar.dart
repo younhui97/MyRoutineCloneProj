@@ -5,8 +5,27 @@ import 'package:contact/routine.dart';
 
 void main() => runApp(MyApp());
 
-class TabbarC extends StatelessWidget {
+class TabbarC extends StatefulWidget {
   const TabbarC({Key? key}) : super(key: key);
+  @override
+  State<StatefulWidget> createState() {
+    return _TabbarCState();
+  }
+}
+
+class _TabbarCState extends State<TabbarC> {
+  var list;
+  var random;
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
+  Future<Null> refreshList() async {
+    refreshKey.currentState?.show(atTop: false);
+    await Future.delayed(Duration(seconds: 0)); //thread sleep 같은 역할을 함.
+    //새로운 정보를 그려내는 곳
+    setState(() {
+      list = List.generate(random.nextInt(100), (i) => "Item $i");
+    });
+    return null;
+  }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,128 +54,138 @@ class TabbarC extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              Expanded(child:
-              Column(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height*0.01,),
-                  Container(
-                    height: MediaQuery.of(context).size.height*0.077,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 20,
-                        ),
-                        Container(
-                          height: MediaQuery.of(context).size.height*0.06,
-                          padding: EdgeInsets.zero,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(4.0),
-                          ),
-                          child: ToggleButtons(
-                            isSelected: [true,false],
-                            fillColor: Color(0xFFebfcdc),
-                            selectedBorderColor: Color(0xff16cd73),
-                            onPressed: (d) {},
-                            borderRadius: BorderRadius.circular(4.0),
-                            // constraints: BoxConstraints(minHeight: 38,minWidth: 60),
-                            children: [
-                              Container(
-                                alignment: Alignment.center,
-                                child: Text('일간', style: TextStyle(color:Colors.black54)),
-                              ), //일간
-                              Container(
-                                alignment: Alignment.center,
-                                child: Text('주간', style: TextStyle(color:Colors.black54)),
-                              ), // 주간
-                            ],
-                          ),
-                        ), //일간,주간
-                        Container(
-                          width: 10,
-                        ),
-                        Container(
-                          height: MediaQuery.of(context).size.height*0.06,
-                          width:70,
-                          child: OutlinedButton(
-                            onPressed: (){},
-                            style: OutlinedButton.styleFrom(
-                                fixedSize: const Size(80,40),
-                                backgroundColor: Colors.white
-                            ),
+              RefreshIndicator(
+                  key: refreshKey,
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    shrinkWrap: true,
+                    itemCount: 1,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Expanded(child:
+                      Column(
+                        children: [
+                          Container(
+                            height: MediaQuery.of(context).size.height*0.01,),
+                          Container(
+                            height: MediaQuery.of(context).size.height*0.077,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Icon(Icons.schedule_outlined,color: Colors.black54,),
-                                Expanded(child:
-                                Icon(Icons.expand_more,color: Colors.black54,)
+                                Container(
+                                  width: 20,
+                                ),
+                                Container(
+                                  height: MediaQuery.of(context).size.height*0.06,
+                                  padding: EdgeInsets.zero,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(4.0),
+                                  ),
+                                  child: ToggleButtons(
+                                    isSelected: [true,false],
+                                    fillColor: Color(0xFFebfcdc),
+                                    selectedBorderColor: Color(0xff16cd73),
+                                    onPressed: (d) {},
+                                    borderRadius: BorderRadius.circular(4.0),
+                                    // constraints: BoxConstraints(minHeight: 38,minWidth: 60),
+                                    children: [
+                                      Container(
+                                        alignment: Alignment.center,
+                                        child: Text('일간', style: TextStyle(color:Colors.black54)),
+                                      ), //일간
+                                      Container(
+                                        alignment: Alignment.center,
+                                        child: Text('주간', style: TextStyle(color:Colors.black54)),
+                                      ), // 주간
+                                    ],
+                                  ),
+                                ), //일간,주간
+                                Container(
+                                  width: 10,
+                                ),
+                                Container(
+                                  height: MediaQuery.of(context).size.height*0.06,
+                                  width:70,
+                                  child: OutlinedButton(
+                                    onPressed: (){},
+                                    style: OutlinedButton.styleFrom(
+                                        fixedSize: const Size(80,40),
+                                        backgroundColor: Colors.white
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.schedule_outlined,color: Colors.black54,),
+                                        Expanded(child:
+                                        Icon(Icons.expand_more,color: Colors.black54,)
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  width: 10,
+                                ),
+                                Row(children: [
+                                  TextButton(
+                                    style: TextButton.styleFrom( primary: Color(0xFF00430F), padding: EdgeInsets.fromLTRB(10,10,8,10), ),
+                                    onPressed: ()=>{},
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.swap_vert,color: Colors.black54,size: 16,),
+                                        Text("순서변경",style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize: 13),),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 5,
+                                    child: Text("|"),
+                                  ),
+                                  TextButton(
+                                    style: TextButton.styleFrom( primary: Color(0xFF00430F), padding: EdgeInsets.fromLTRB(5,10,10,10), ),
+                                    onPressed: ()=>{},
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.filter_alt_outlined,color: Colors.black54,size: 15,),
+                                        Text("필터",style: TextStyle(color: Colors.black54,fontSize: 13, fontWeight: FontWeight.bold),),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                        Container(
-                          width: 10,
-                        ),
-                        Row(children: [
-                          TextButton(
-                            style: TextButton.styleFrom( primary: Color(0xFF00430F), padding: EdgeInsets.fromLTRB(10,10,8,10), ),
-                            onPressed: ()=>{},
-                            child: Row(
-                              children: [
-                                Icon(Icons.swap_vert,color: Colors.black54,size: 16,),
-                                Text("순서변경",style: TextStyle(color: Colors.black54,fontWeight: FontWeight.bold,fontSize: 13),),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: 5,
-                            child: Text("|"),
-                          ),
-                          TextButton(
-                            style: TextButton.styleFrom( primary: Color(0xFF00430F), padding: EdgeInsets.fromLTRB(5,10,10,10), ),
-                            onPressed: ()=>{},
-                            child: Row(
-                              children: [
-                                Icon(Icons.filter_alt_outlined,color: Colors.black54,size: 15,),
-                                Text("필터",style: TextStyle(color: Colors.black54,fontSize: 13, fontWeight: FontWeight.bold),),
-                              ],
-                            ),
-                          ),
-                        ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(height: MediaQuery.of(context).size.height*0.01), // 리스트 위에 빈 공간
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children:[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
+                          Container(height: MediaQuery.of(context).size.height*0.01), // 리스트 위에 빈 공간
                           Column(
-                            children: [
-                              Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children:[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Rlist(),
+                                  Column(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Rlist(),
+                                        ],
+                                      ),
+                                      Container(
+                                        width: 10,
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
-                              Container(
-                                width: 10,
-                              ),
                             ],
-                          ),
+                          )
                         ],
-                      ),
-                    ],
-                  )
-                ],
-              )
-              ),
+                      )
+                      );
+                    },
+                  ),
+                  onRefresh:()=> refreshList() ),
               Icon(Icons.directions_transit),
             ],
           ),
