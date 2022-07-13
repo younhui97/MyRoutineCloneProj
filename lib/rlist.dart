@@ -10,8 +10,13 @@ class Rlist extends StatefulWidget {
 
 class RlistState extends State<Rlist>{
   static var listnum = 1 ;
+  // bool checksel = false;
+  // var checklist = [];
+  var checkList = List<bool>.filled(5, false, growable: true);
+  var checkcnt = 0;
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         SizedBox(
@@ -60,8 +65,18 @@ class RlistState extends State<Rlist>{
                                 width: 10,
                               ),
                               Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text("기상 직후",style: TextStyle(),),),
+                                  alignment: Alignment.centerLeft,
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width*0.14,
+                                    child: TextField(
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          labelText: '언제',
+                                        )
+                                    ),
+                                  )
+                                // Text("기상 직후",style: TextStyle(),),
+                              ),
                             ]
                         )
                     ),
@@ -83,8 +98,18 @@ class RlistState extends State<Rlist>{
                                 width: 10,
                               ),
                               Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text("아침에 물 한잔",style: TextStyle(),),),
+                                  alignment: Alignment.centerLeft,
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width*0.45,
+                                    child: TextField(
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          labelText: '루틴명',
+                                        )
+                                    ),
+                                  )
+                                // Text("아침에 물 한잔",style: TextStyle(),),
+                              ),
                             ]
                         )
                     ),
@@ -100,7 +125,11 @@ class RlistState extends State<Rlist>{
                         borderRadius: BorderRadius.all(Radius.circular(5.0)),
                       ),
                       child: Center(
-                        child: Icon(Icons.check),),
+                          child:
+                        IconButton(onPressed: ()=>{setState((){checkList[index]=true;checkcnt++;})} ,
+                            icon: Icon(Icons.check,color: checkList[index] ? Colors.black : Colors.white)
+                        ),
+                      ),
                     ),
                   ),
                   Expanded(
