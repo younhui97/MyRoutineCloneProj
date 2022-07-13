@@ -13,11 +13,15 @@ class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    return _MainPageState();
+    return MainPageState();
   }
 }
 
-class _MainPageState extends State<MainPage>{
+class MainPageState extends State<MainPage>{
+  bool greenlight = false;
+  bool yellowlight = false;
+  bool greylight = true;
+  static double accper = 0;
   final ButtonStyle bottomstyle =
   ElevatedButton.styleFrom(
       elevation: 0,
@@ -150,7 +154,7 @@ class _MainPageState extends State<MainPage>{
                                         size: Size(40, 40), // button width and height
                                         child: ClipOval(
                                           child: Material(
-                                            color: (now.subtract(Duration(days: now.weekday - i-1)).day == now.day) ? Color(0xFF16cd73) : Color(0xffeceef0), // button color
+                                            color: (accper >= 0.5 ? Color(0xFF16cd73) : Color(0xffeceef0) ),// button color
                                             child: Column(
                                               mainAxisAlignment: MainAxisAlignment.center,
                                               children: <Widget>[

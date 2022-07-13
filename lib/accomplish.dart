@@ -7,8 +7,27 @@ void main() => runApp(Acc());
 class Acc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp( //use MaterialApp() widget like this
+    return MaterialApp(
         home: Scaffold(
+            body:Column(
+                children:[
+                  Container(
+                      height: 100
+                  ),
+                  Row(
+                    children:[
+                      IconButton(
+                        onPressed: (){
+                          Navigator.of(context).pop(context);
+                        },
+                        icon: Icon(Icons.arrow_back_ios,color: Colors.black87,),
+                      ),
+                      Text("  ")
+                    ],
+                  ),
+                ]
+            )
+
         )
     );
   }

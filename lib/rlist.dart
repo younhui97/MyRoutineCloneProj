@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:contact/main_page.dart';
 
 class Rlist extends StatefulWidget {
   const Rlist({Key? key}) : super(key: key);
@@ -125,8 +126,18 @@ class RlistState extends State<Rlist>{
                         borderRadius: BorderRadius.all(Radius.circular(5.0)),
                       ),
                       child: Center(
-                          child:
-                        IconButton(onPressed: ()=>{setState((){checkList[index]=true;checkcnt++;})} ,
+                        child:
+                        IconButton(onPressed: ()=>{setState((){
+                          if (checkList[index]==true){
+                            checkList[index]=false;
+                            checkcnt--;}
+                          else{
+                            checkList[index]=true;
+                            checkcnt++;}
+                          if ((checkcnt/listnum)>0.5){
+                            MainPageState.accper=0.5;
+                          }
+                        })},
                             icon: Icon(Icons.check,color: checkList[index] ? Colors.black : Colors.white)
                         ),
                       ),
