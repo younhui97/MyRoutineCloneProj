@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:unicorndial/unicorndial.dart';
 import 'accomplish.dart';
 import 'package:contact/rlist.dart';
+import 'add_routine.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class MainPageState extends State<MainPage>{
   bool greenlight = false;
   bool yellowlight = false;
   bool greylight = true;
+  var colorList = List<bool>.filled(7, false, growable: true);
   static double accper = 0;
   final ButtonStyle bottomstyle =
   ElevatedButton.styleFrom(
@@ -80,8 +82,9 @@ class MainPageState extends State<MainPage>{
               backgroundColor: Color(0XFFD6FFAD),
               child: Icon(Icons.add,color: Colors.black45),
               onPressed: () {
+                Navigator.of(context).push(_addRoute());
                 RlistState.listnum++;
-                setState((){});
+                // setState((){});
               },
             )
         )
@@ -412,4 +415,19 @@ Route _myinfoRoute() {
   );
 }
 
+Route _addRoute() {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => AddRoute(),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(1.0, 0.0);
+      var end = Offset.zero;
+      var tween = Tween(begin: begin, end: end);
+      var offsetAnimation = animation.drive(tween);
+      return SlideTransition(
+        position: offsetAnimation,
+        child: child,
+      );
+    },
+  );
+}
 

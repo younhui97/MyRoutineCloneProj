@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:contact/main_page.dart';
 
 class Rlist extends StatefulWidget {
-  const Rlist({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return RlistState();
@@ -10,10 +10,13 @@ class Rlist extends StatefulWidget {
 }
 
 class RlistState extends State<Rlist>{
+
   static var listnum = 1 ;
+  // static var Rnum=0;
   // bool checksel = false;
   // var checklist = [];
   var checkList = List<bool>.filled(5, false, growable: true);
+  static var routineList = List<String>.filled(5,' ', growable: true);
   var checkcnt = 0;
   @override
   Widget build(BuildContext context) {
@@ -69,14 +72,14 @@ class RlistState extends State<Rlist>{
                                   alignment: Alignment.centerLeft,
                                   child: Container(
                                     width: MediaQuery.of(context).size.width*0.14,
-                                    child: TextField(
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          labelText: '언제',
-                                        )
-                                    ),
+                                    child: Text(routineList[listnum],style: TextStyle(),),
+                                    // TextField(
+                                    //     decoration: InputDecoration(
+                                    //       border: InputBorder.none,
+                                    //       hintText: '언제',
+                                    //     )
+                                    // ),
                                   )
-                                // Text("기상 직후",style: TextStyle(),),
                               ),
                             ]
                         )
@@ -105,7 +108,7 @@ class RlistState extends State<Rlist>{
                                     child: TextField(
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
-                                          labelText: '루틴명',
+                                          hintText: '루틴명',
                                         )
                                     ),
                                   )
@@ -134,9 +137,14 @@ class RlistState extends State<Rlist>{
                           else{
                             checkList[index]=true;
                             checkcnt++;}
+                          if((checkcnt==1)&&(listnum==1)){
+                            MainPageState.accper=1;
+                            setState((){});
+                          }
                           if ((checkcnt/listnum)>0.5){
                             MainPageState.accper=0.5;
                           }
+                          // MainPage.setState();
                         })},
                             icon: Icon(Icons.check,color: checkList[index] ? Colors.black : Colors.white)
                         ),
